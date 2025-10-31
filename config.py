@@ -2,11 +2,11 @@
 
 # --- I. DAMAGE PARAMETERS ---
 # Updated weekly based on OSINT reports on strike activity.
-AVG_STRIKES_PER_WEEK = 3.5
+AVG_STRIKES_PER_WEEK = 5.5
 CRITICALITY_DIST = {
-    'high': 0.70,
-    'medium': 0.25,
-    'low': 0.05
+    'high': 0.30,   # e.g., 750kV/500kV substation, major power plant
+    'medium': 0.50, # e.g., refinery, smaller substation, rail power
+    'low': 0.20     # e.g., transmission lines, minor depot
 }
 DAMAGE_SCORES = {'high': 5, 'medium': 2, 'low': 1}
 
@@ -26,16 +26,16 @@ SCENARIO_MODIFIER = 1.0
 # 2. TECHNOLOGY DEPENDENCY MODIFIER: Reflects sanctions impact.
 #    0.25 = High Dependency (e.g., advanced gas turbines, SCADA systems hit)
 #    1.0 = High Sovereignty (e.g., hydropower, standard transmission hit)
-TECH_DEPENDENCY_MODIFIER = 0.25
+TECH_DEPENDENCY_MODIFIER = 1.0
 
 # 3. POLITICAL WILL MODIFIER: Acts as an accelerator.
 #    1.0 = Medium (standard response)
 #    2.0 = High (direct Kremlin intervention)
-POLITICAL_WILL_MODIFIER = 2.0
+POLITICAL_WILL_MODIFIER = 1.0
 
 # 4. HUMAN CAPITAL MODIFIER: Long-term degradation from brain drain.
 #    Starts at 1.0 and can be slowly decayed over time.
-HUMAN_CAPITAL_MODIFIER = 0.25
+HUMAN_CAPITAL_MODIFIER = 1.0
 
 # --- III. SYSTEM HEALTH PARAMETERS ---
 INITIAL_GRID_HEALTH = 100.0

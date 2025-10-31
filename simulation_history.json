@@ -1,0 +1,27 @@
+[
+    {
+        "timestamp": "2025-10-31T03:27:48.588119",
+        "simulation_parameters": {
+            "time_horizon_weeks": 24,
+            "num_simulations": 10000,
+            "collapse_threshold": 40.0
+        },
+        "input_variables": {
+            "avg_strikes_per_week": 3.5,
+            "criticality_dist": {
+                "high": 0.7,
+                "medium": 0.25,
+                "low": 0.05
+            },
+            "scenario_modifier": 1.0,
+            "tech_dependency_modifier": 0.25,
+            "political_will_modifier": 2.0,
+            "human_capital_modifier": 0.25
+        },
+        "forecast": {
+            "probability_of_collapse": 100.0,
+            "median_collapse_week": 5,
+            "mode_collapse_week": 5
+        }
+    }
+]
