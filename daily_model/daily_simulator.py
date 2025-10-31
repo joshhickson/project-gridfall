@@ -1,6 +1,7 @@
 # daily_simulator.py
 import numpy as np
 import daily_config as config  # Import the daily configuration file
+from scipy.stats import lognorm
 
 def run_daily_grid_simulation(days):
     """
@@ -10,7 +11,7 @@ def run_daily_grid_simulation(days):
     grid_health = config.INITIAL_GRID_HEALTH
 
     for day in range(days):
-        # 1. Calculate Damage for the Day
+        # 1. Calculate Damage for the Day using a probabilistic model
         num_strikes = np.random.poisson(config.AVG_STRIKES_PER_DAY)
         total_damage = 0
         for _ in range(num_strikes):
@@ -18,7 +19,10 @@ def run_daily_grid_simulation(days):
                 list(config.CRITICALITY_DIST.keys()),
                 p=list(config.CRITICALITY_DIST.values())
             )
-            total_damage += config.DAMAGE_SCORES[target_type]
+            # Draw from a log-normal distribution for more realistic damage impact
+            params = config.DAMAGE_DISTRIBUTIONS[target_type]
+            damage = lognorm.rvs(s=params['log_std'], scale=np.exp(params['log_mean']))
+            total_damage += damage
 
         # 2. Calculate MODIFIED Repair Capacity for the Day
         actual_repair_this_day = (config.BASELINE_REPAIR_CAPACITY_PER_DAY *

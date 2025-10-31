@@ -1,6 +1,7 @@
 # simulator.py
 import numpy as np
 import config  # Import the configuration file
+from scipy.stats import lognorm
 
 def run_grid_simulation(weeks):
     """
@@ -10,7 +11,7 @@ def run_grid_simulation(weeks):
     grid_health = config.INITIAL_GRID_HEALTH
 
     for week in range(weeks):
-        # 1. Calculate Damage for the Week
+        # 1. Calculate Damage for the Week using a probabilistic model
         num_strikes = np.random.poisson(config.AVG_STRIKES_PER_WEEK)
         total_damage = 0
         for _ in range(num_strikes):
@@ -18,7 +19,10 @@ def run_grid_simulation(weeks):
                 list(config.CRITICALITY_DIST.keys()),
                 p=list(config.CRITICALITY_DIST.values())
             )
-            total_damage += config.DAMAGE_SCORES[target_type]
+            # Draw from a log-normal distribution for more realistic damage impact
+            params = config.DAMAGE_DISTRIBUTIONS[target_type]
+            damage = lognorm.rvs(s=params['log_std'], scale=np.exp(params['log_mean']))
+            total_damage += damage
 
         # 2. Calculate MODIFIED Repair Capacity for the Week
         actual_repair_this_week = (config.BASELINE_REPAIR_CAPACITY *
