@@ -90,45 +90,5 @@ def main():
     print("="*52)
     print(f"\nESTIMATED PROBABILITY OF SYSTEMIC CONSEQUENCE: {probability_of_collapse:.2f}%\n")
 
-    # --- Save results to a separate daily history file ---
-    history_file = 'daily_model/simulation_history_daily.json'
-
-    output_data = {
-        'timestamp': datetime.utcnow().isoformat(),
-        'model_type': 'daily',
-        'simulation_parameters': {
-            'time_horizon_days': config.TIME_HORIZON_DAYS,
-            'num_simulations': config.NUM_SIMULATIONS,
-            'collapse_threshold': config.COLLAPSE_THRESHOLD
-        },
-        'input_variables': {
-            'avg_strikes_per_day': config.AVG_STRIKES_PER_DAY,
-            'criticality_dist': config.CRITICALITY_DIST,
-            'scenario_modifier': config.SCENARIO_MODIFIER,
-            'tech_dependency_modifier': config.TECH_DEPENDENCY_MODIFIER,
-            'political_will_modifier': config.POLITICAL_WILL_MODIFIER,
-            'human_capital_modifier': config.HUMAN_CAPITAL_MODIFIER
-        },
-        'forecast': {
-            'probability_of_collapse': probability_of_collapse,
-            'median_collapse_day': int(median_collapse_day) if median_collapse_day != -1 else None,
-            'mode_collapse_day': int(mode_collapse_day) if mode_collapse_day != -1 else None
-        }
-    }
-
-    try:
-        with open(history_file, 'r') as f:
-            history = json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        history = []
-
-    history.append(output_data)
-
-    with open(history_file, 'w') as f:
-        json.dump(history, f, indent=4)
-
-    print(f"Results saved to {history_file}")
-
-
 if __name__ == "__main__":
     main()
