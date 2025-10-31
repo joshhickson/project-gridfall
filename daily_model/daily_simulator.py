@@ -1,8 +1,6 @@
 # daily_simulator.py
 import numpy as np
 import daily_config as config  # Import the daily configuration file
-import json
-from datetime import datetime
 
 def run_daily_grid_simulation(days):
     """
@@ -50,14 +48,21 @@ def main():
 
     probability_of_collapse = (len(collapse_days) / config.NUM_SIMULATIONS) * 100
 
-    # --- New statistical analysis ---
+    # --- Full Statistical Analysis ---
     if collapse_days:
+        mean_collapse_day = np.mean(collapse_days)
+        std_dev_collapse_day = np.std(collapse_days)
+        percentile_25 = np.percentile(collapse_days, 25)
         median_collapse_day = np.median(collapse_days)
-        day_counts = np.bincount(collapse_days)
-        mode_collapse_day = np.argmax(day_counts)
+        percentile_75 = np.percentile(collapse_days, 75)
+        percentile_95_tail_risk = np.percentile(collapse_days, 5) # 5th percentile for earliest collapse
     else:
+        mean_collapse_day = -1
+        std_dev_collapse_day = -1
+        percentile_25 = -1
         median_collapse_day = -1
-        mode_collapse_day = -1
+        percentile_75 = -1
+        percentile_95_tail_risk = -1
 
     # Calculate the final repair capacity used in the simulation
     final_repair_capacity = (config.BASELINE_REPAIR_CAPACITY_PER_DAY *
@@ -81,10 +86,12 @@ def main():
     print(f"  - Human Capital Mod:      {config.HUMAN_CAPITAL_MODIFIER}")
     print(f"  - Resulting Repair Rate:  {final_repair_capacity:.2f} points/day")
     print("="*52)
-    print(f"\n--- DAILY TIMELINE ANALYSIS ---")
+    print(f"\n--- DAILY TIMELINE ANALYSIS (STATISTICAL SUMMARY) ---")
     if probability_of_collapse > 0:
-        print(f"  - Median Collapse Point:  Day {median_collapse_day:.0f}")
-        print(f"  - Most Likely Collapse:   Day {mode_collapse_day}")
+        print(f"  - Mean Collapse Point:    Day {mean_collapse_day:.1f} (Std Dev: {std_dev_collapse_day:.1f})")
+        print(f"  - Interquartile Range:    Day {percentile_25:.1f} to {percentile_75:.1f}")
+        print(f"  - Median Collapse Point:  Day {median_collapse_day:.1f}")
+        print(f"  - 5% Tail Risk Point:     Collapse by Day {percentile_95_tail_risk:.1f}")
     else:
         print("  - No systemic collapse predicted within the time horizon.")
     print("="*52)
