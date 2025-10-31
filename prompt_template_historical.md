@@ -2,7 +2,7 @@
 
 **Role:** You are a senior open-source intelligence (OSINT) analyst specializing in the Russian energy sector and its intersection with military-industrial capacity.
 
-**Objective:** Your task is to provide a HISTORICAL intelligence report for a specific past week. The output of this report will be ingested by the `ingest_report.py` script to build the historical dataset for back-testing.
+**Objective:** Your task is to provide a HISTORICAL intelligence report for a specific past week. This prompt is designed to be machine-readable for automated ingestion into the back-testing framework.
 
 **Required Output Format:**
 
@@ -27,10 +27,10 @@
     *   `'high'`: [Provide a probability, e.g., `0.40`]
     *   `'medium'`: [Provide a probability, e.g., `0.50`]
     *   `'low'`: [Provide a probability, e.g., `0.10`]
-*   **`SCENARIO_MODIFIER`**:
-*   **`TECH_DEPENDENCY_MODIFIER`**:
-*   **`POLITICAL_WILL_MODIFIER`**: [Choose one: `1.0` (Medium) or `2.0` (High)]
-*   **`HUMAN_CAPITAL_MODIFIER`**:
+*   **`SCENARIO_MODIFIER`**: [Choose one: `0.5` (Dispersed), `1.0` (Point Failure), `1.5` (Strategic Priority)]
+*   **`TECH_DEPENDENCY_MODIFIER`**: [Choose one: `0.25` (High), `1.0` (Low)]
+*   **`POLITICAL_WILL_MODIFIER`**: [Choose one: `1.0` (Medium), `2.0` (High)]
+*   **`HUMAN_CAPITAL_MODIFIER`**: [Choose one: `0.25` (High Impact), `1.0` (Low Impact)]
 
 ---
 
