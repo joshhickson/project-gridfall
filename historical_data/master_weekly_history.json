@@ -1,0 +1,20 @@
+[
+    {
+        "period_id": "2025-W42",
+        "ingestion_date": "2025-10-31T23:58:07.550849",
+        "source_file": "historical_data/W42_test_report.md",
+        "notes": "Ingested via ingest_report.py",
+        "input_variables": {
+            "AVG_STRIKES_PER_WEEK": 6.0,
+            "CRITICALITY_DIST": {
+                "high": 0.25,
+                "medium": 0.6,
+                "low": 0.15
+            },
+            "SCENARIO_MODIFIER": 1.0,
+            "TECH_DEPENDENCY_MODIFIER": 1.0,
+            "POLITICAL_WILL_MODIFIER": 1.0,
+            "HUMAN_CAPITAL_MODIFIER": 1.0
+        }
+    }
+]

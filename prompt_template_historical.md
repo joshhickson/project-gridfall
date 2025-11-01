@@ -14,10 +14,6 @@
 
 ---
 
-**Required Output Format:**
-
----
-
 ### **Part 1: Simulator Input Variables (for `config.py`)**
 
 *Provide the specific values for each variable based on your analysis for the reporting period.*

@@ -8,7 +8,12 @@ CRITICALITY_DIST = {
     'medium': 0.50, # e.g., refinery, smaller substation, rail power
     'low': 0.20     # e.g., transmission lines, minor depot
 }
-DAMAGE_SCORES = {'high': 5, 'medium': 2, 'low': 1}
+# DAMAGE_SCORES = {'high': 5, 'medium': 2, 'low': 1} # DEPRECATED
+DAMAGE_DISTRIBUTIONS = {
+    'high':   {'log_mean': 1.5, 'log_std': 0.5}, # Log-normal params for high impact
+    'medium': {'log_mean': 0.6, 'log_std': 0.4},
+    'low':    {'log_mean': 0.0, 'log_std': 0.3}
+}
 
 # --- II. REPAIR CAPACITY PARAMETERS ---
 # Updated weekly/monthly based on analysis of Russia's response capabilities.
