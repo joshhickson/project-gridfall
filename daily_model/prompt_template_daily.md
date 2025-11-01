@@ -42,7 +42,7 @@ Your final output must be a single, complete Markdown file that follows this str
 
 ### **Part 1: Simulator Input Variables**
 
-*   **`AVG_STRIKES_PER_WEEK`**: [3.5]
+*   **`AVG_STRIKES_PER_DAY`**: [0.5]
 *   **`CRITICALITY_DIST`**:
     *   `'high'`: [0.70]
     *   `'medium'`: [0.25]
@@ -59,13 +59,13 @@ Your final output must be a single, complete Markdown file that follows this str
 **1. Executive Summary:** The reporting period was defined by a potent "scissor effect," where highly targeted, high-impact kinetic strikes coincided with a new, severe sanctions regime. This has moved the situation beyond simple degradation and is now actively constraining Russia's ability to recover, indicating a significant acceleration in the decay of their energy grid's resilience.
 
 **2. Strike & Damage Assessment:**
-*   **Justification for `AVG_STRIKES_PER_WEEK` and `CRITICALITY_DIST`:** While the raw number of strikes was moderate (3-4), the targeting was exclusively focused on assets of the highest strategic importance. Two major kinetic events were confirmed: the Ryazan oil refinery (a top-5 national producer) and the Balashovskaya 500kV substation (a critical southern grid node). This 100% focus on high-criticality targets justifies the `0.70` probability for 'high'. The `3.5` average reflects the continued operational tempo.
-*   **Justification for `SCENARIO_MODIFIER`:** The damage profile was unequivocally 'Point Failure'. The attacks were precision strikes designed to disable specific, hard-to-replace components (e.g., a CDU unit), maximizing the logistical and economic impact per strike. The value is therefore `1.0`.
+*   **Justification for `AVG_STRIKES_PER_DAY` and `CRITICALITY_DIST`:** Based on the events of the past 24 hours, was the operational tempo average, or was there a significant spike or lull? Did the targeting focus on a specific criticality level? This justifies your chosen values.
+*   **Justification for `SCENARIO_MODIFIER`:** Was the damage profile for the day 'Point Failure', 'Dispersed Damage', or was a 'Strategic Priority' target hit?
 
 **3. Repair Capacity Assessment:**
-*   **Justification for `TECH_DEPENDENCY_MODIFIER`:** The new US/EU blocking sanctions imposed on Rosneft (owner of the Ryazan refinery) at the start of the reporting period are a game-changer. Procurement of Western-made components for facilities like Ryazan is now functionally prohibited, not just difficult. This represents a severe, immediate constraint on repair capacity, justifying the 'High' impact modifier of `0.25`.
-*   **Justification for `POLITICAL_WILL_MODIFIER`:** The Kremlin's public-facing response (e.g., speeches at Russian Energy Week) was confident. However, this was contradicted by concurrent internal actions, such as the Duma approving the use of reservists to physically guard infrastructure. This crisis-mode mobilization indicates the highest level of political attention, justifying the 'High' modifier of `2.0`.
-*   **Justification for `HUMAN_CAPITAL_MODIFIER`:** No new acute events occurred this week, but all sources continue to point to the chronic, worsening shortage of skilled technical labor due to mobilization and brain drain. This acts as a persistent, high-impact drag on repair capacity, justifying the continued 'High' impact modifier of `0.25`.
+*   **Justification for `TECH_DEPENDENCY_MODIFIER`:** Has any new intelligence emerged in the last 24 hours regarding Russia's access to or lack of critical technology for repairs?
+*   **Justification for `POLITICAL_WILL_MODIFIER`:** Have there been any high-level Kremlin meetings, statements, or decrees related to the energy sector in the past 24 hours that would indicate a change in political focus?
+*   **Justification for `HUMAN_CAPITAL_MODIFIER`:** Has any new, significant reporting on the state of Russia's technical workforce emerged in the past 24 hours?
 
 **4. Sources & Citations:**
 *   [1] Kyiv Independent, "Ukraine confirms strike on Russia's Ryazan oil refinery..."
